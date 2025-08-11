@@ -19,7 +19,8 @@ def screenshot_similarity() -> bool:
         bool: True if all screenshots are similar, False otherwise.
     """
     result = []
-    screenshot_files = os.listdir(SCREENSHOTS_FOLDER)
+    screenshot_files = [screenshot for screenshot in os.listdir(SCREENSHOTS_FOLDER) if screenshot.endswith('.png')]
+    print(f"Found {len(screenshot_files)} screenshots to compare.")
     # first screenshot to compare with others
     compar_screenshot = screenshot_files[0]
     for screenshot in screenshot_files[1:]:
