@@ -10,7 +10,6 @@ data = [{"url": row["url"], "label": row["label"]} for index, row in df.iterrows
 if __name__ == "__main__":
     while True:
         print("Checking streams...")
-        time.sleep(60)
         for row in data:
             # Init variables
             url, label = row["url"], row["label"]

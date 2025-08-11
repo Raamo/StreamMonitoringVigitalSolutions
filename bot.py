@@ -35,7 +35,9 @@ def run_driver(url:str) -> bool:
     driver.maximize_window()
     # Maximize the browser window
     try:
+        print(f"Opening URL: {url}")
         driver.get(url)
+        print("Opened URL successfully.")
         sleep(BEGINNING_DELAY)  # Wait for the page to load
         # Check if the page has loaded correctly
         for index in range(SCREENSHOT_AMOUNTS):
