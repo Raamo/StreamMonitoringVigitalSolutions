@@ -12,6 +12,18 @@ BEGINNING_DELAY = 10 # Delay before starting the screenshot process
 SCREENSHOT_AMOUNTS = 5  # Amount of screenshots to take
 TIME_DELAY = 5  # Delay between screenshots in seconds
 
+# Init the driver
+opts = webdriver.ChromeOptions()  # Headless-Modus for the Browser
+opts.add_argument('--headless')
+opts.add_argument('--disable-gpu')
+opts.add_argument('--no-sandbox')
+opts.add_argument('--disable-dev-shm-usage')
+opts.add_argument("--window-size=1920,1080")
+opts.add_argument("--log-level=3")
+opts.add_experimental_option("excludeSwitches", ["enable-logging"])
+driver = webdriver.Chrome(options=opts)
+driver.maximize_window()
+
 def run_driver(url:str) -> bool:
     """
     Runs the Selenium WebDriver to take screenshots of a webpage.
@@ -23,16 +35,6 @@ def run_driver(url:str) -> bool:
         bool: True if the screenshots were taken successfully, False otherwise.
         And also if the browser is running or successfully closed.
     """
-    # Init the driver
-    opts = webdriver.ChromeOptions()  # Headless-Modus for the Browser
-    opts.add_argument('--headless')
-    opts.add_argument('--disable-gpu')
-    opts.add_argument('--no-sandbox')
-    opts.add_argument('--disable-dev-shm-usage')
-    opts.add_argument("--log-level=3")
-    opts.add_experimental_option("excludeSwitches", ["enable-logging"])
-    driver = webdriver.Chrome(options=opts)
-    driver.maximize_window()
     # Maximize the browser window
     try:
         print(f"Opening URL: {url}")
