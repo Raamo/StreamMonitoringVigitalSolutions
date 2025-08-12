@@ -14,7 +14,7 @@ TIME_DELAY = 5  # Delay between screenshots in seconds
 
 # Init the driver
 opts = webdriver.ChromeOptions()  # Headless-Modus for the Browser
-# opts.add_argument('--headless')
+opts.add_argument('--headless')
 opts.add_argument('--disable-gpu')
 opts.add_argument('--no-sandbox')
 opts.add_argument('--disable-dev-shm-usage')
