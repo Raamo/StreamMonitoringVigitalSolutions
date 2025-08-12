@@ -13,18 +13,19 @@ if __name__ == "__main__":
         for row in data:
             # Init variables
             url, label = row["url"], row["label"]
+            content = f"""
+            LABEL: {label}
+            STREAM: {url} 
+            It’s not working, no changes are happening in the video or does not work.
+            """
             # Run the driver and take screenshots
             if run_driver(url):
                 print("Driver ran successfully and screenshots were taken.")
             else:
                 print("There was an error running the driver or taking screenshots.")
+                slack_send_message(content)
             print("Checking screenshot similarity...")
             if screenshot_similarity():
-                content = f"""
-                LABEL: {label}
-                STREAM: {url} 
-                It’s not working, no changes are happening in the video.
-                """
                 slack_send_message(content)
                 print(content)
                 print("-"*30)

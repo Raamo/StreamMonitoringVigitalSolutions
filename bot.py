@@ -14,7 +14,7 @@ TIME_DELAY = 5  # Delay between screenshots in seconds
 
 # Init the driver
 opts = webdriver.ChromeOptions()  # Headless-Modus for the Browser
-opts.add_argument('--headless')
+# opts.add_argument('--headless')
 opts.add_argument('--disable-gpu')
 opts.add_argument('--no-sandbox')
 opts.add_argument('--disable-dev-shm-usage')
@@ -48,10 +48,22 @@ def run_driver(url:str) -> bool:
             print(f"Screenshot saved: {filename}")
             sleep(TIME_DELAY)
         print("All screenshots taken successfully.")
-        driver.close()  # Close the browser
-        driver.quit()  # Quit the driver
         return True
     except Exception as e:
         print(f"An error occurred: {e}")
-        driver.quit()
+        quit_driver(driver)
         return False
+
+
+def quit_driver(driver:webdriver.Chrome) -> None:
+    """
+    Closes the Selenium WebDriver.
+
+    Args:
+        driver (webdriver.Chrome): The Selenium WebDriver instance to close.
+    
+    Returns:
+        None
+    """
+    driver.close()  # Close the browser
+    driver.quit()  # Quit the driver
